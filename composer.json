@@ -1,0 +1,62 @@
+{
+    "name": "final-gene/uri-template-module",
+    "description": "Build URI templates from ZF2 routes",
+    "type": "library",
+    "homepage": "https://gitlab.devel.final-gene.de/final-gene/uri-template-module",
+    "license": "proprietary",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://satis.final-gene.de"
+        }
+    ],
+    "authors": [
+        {
+            "name": "Frank Giesecke",
+            "email": "frank.giesecke@final-gene.de",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "zendframework/zend-config": "^2.5",
+        "zendframework/zend-modulemanager": "^2.5",
+        "zendframework/zend-servicemanager": "^2.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8",
+        "zendframework/zend-filter": "^2.5",
+        "zendframework/zend-form": "^2.5",
+        "zendframework/zend-i18n": "^2.5",
+        "zendframework/zend-inputfilter": "^2.5",
+        "zendframework/zend-log": "^2.5",
+        "zendframework/zend-serializer": "^2.5",
+        "zendframework/zend-stdlib": "^2.5",
+        "zendframework/zend-test": "^2.5",
+        "zendframework/zend-validator": "^2.5",
+        "final-gene/phing-commons": "^2.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "FinalGene\\UriTemplateModule\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "FinalGene\\UriTemplateModuleTest\\": "tests/src"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "archive": {
+        "exclude": [
+            "/.*",
+            "build.xml",
+            "/composer.*",
+            "/phpunit.*",
+            "sonar-project.properties",
+            "/tests"
+        ]
+    }
+}
