@@ -292,4 +292,60 @@ class UriTemplateService
 
         return sprintf('{?%s}', implode(',', $queryWhiteList));
     }
+
+    /**
+     * Get ZF-Rest collection name for a route (based on the routes controller)
+     *
+     * @param \Zend\Mvc\Router\Http\RouteInterface $childRouteRealRoute
+     *
+     * @return string
+     */
+    protected function getZfRestCollectionName(RouteInterface $childRouteRealRoute)
+    {
+        $refObj = new \ReflectionObject($childRouteRealRoute);
+        if (!$refObj->hasProperty('defaults')) {
+            return '';
+        }
+
+        $refDefaultProperty = $refObj->getProperty('defaults');
+        $refDefaultProperty->setAccessible(true);
+        $defaults = $refDefaultProperty->getValue($childRouteRealRoute);
+
+        if (!isset($defaults['controller'])) {
+            return '';
+        }
+
+        $zfRestConfig = $this->getZfRestConfig();
+        $controller = $defaults['controller'];
+
+        if (!isset($zfRestConfig[$controller]['collection_name'])) {
+            return '';
+        }
+        return $zfRestConfig[$controller]['collection_name'];
+    }
+
+    /**
+     * Get the collection name from a ZF-Rest resource-name
+     *
+     * @param $resourceName
+     *
+     * @return string
+     * @throws \BadMethodCallException
+     */
+    public function getCollectionNameFromResource($resourceName)
+    {
+        $zfRestConfig = $this->getZfRestConfig();
+
+        if (!isset($zfRestConfig[$resourceName])) {
+            throw new \BadMethodCallException('Resource not found');
+        }
+
+        $resourceConfig = $zfRestConfig[$resourceName];
+
+        if (empty($resourceConfig['collection_name'])) {
+            throw new \BadMethodCallException('No collection_name configured');
+        }
+
+        return $resourceConfig['collection_name'];
+    }
 }
