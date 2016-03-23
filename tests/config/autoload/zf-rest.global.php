@@ -8,5 +8,9 @@
 
 return [
     'zf-rest' => [
+        'sampleResource' => [
+            'route_name' => 'route-name',
+            'collection_name' => 'namespace:resource-name',
+        ],
     ],
 ];
