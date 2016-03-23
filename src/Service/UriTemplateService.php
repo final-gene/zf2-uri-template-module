@@ -348,4 +348,54 @@ class UriTemplateService
 
         return $resourceConfig['collection_name'];
     }
+
+    /**
+     * Get the collection name from a ZF2 route
+     *
+     * @param $routeName
+     *
+     * @return string
+     * @throws \BadMethodCallException
+     */
+    public function getCollectionNameFromRoute($routeName)
+    {
+        $router = $this->getRouter();
+        foreach (explode('/', $routeName) as $route) {
+            if ($router instanceof Part) {
+                $this->addChildRoutes($router);
+            }
+            $router = $router->getRoute($route);
+        }
+
+        $controllerName = $this->extractDefaultControllerFromRoute($router);
+        if (null !== $controllerName) {
+            return $this->getCollectionNameFromResource($controllerName);
+        }
+
+        return '';
+    }
+
+    /**
+     * Get the default controller name from a route
+     *
+     * @param object $route
+     *
+     * @return mixed
+     */
+    protected function extractDefaultControllerFromRoute($route)
+    {
+        if (!is_object($route)) {
+            throw new \BadMethodCallException('Object expected');
+        }
+
+        try {
+            $reflectionProp = new \ReflectionProperty(get_class($route), 'defaults');
+            $reflectionProp->setAccessible(true);
+        } catch (\ReflectionException $e) {
+            return null;
+        }
+
+        $defaults = $reflectionProp->getValue($route);
+        return isset($defaults['controller']) ? $defaults['controller'] : null;
+    }
 }
