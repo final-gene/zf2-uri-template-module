@@ -2,7 +2,7 @@
     "name": "final-gene/uri-template-module",
     "description": "Build URI templates from ZF2 routes",
     "type": "library",
-    "homepage": "https://gitlab.devel.final-gene.de/final-gene/uri-template-module",
+    "homepage": "https://gitlab.final-gene.de/final-gene/uri-template-module",
     "license": "proprietary",
     "repositories": [
         {
