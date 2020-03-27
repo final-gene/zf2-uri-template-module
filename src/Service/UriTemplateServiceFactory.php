@@ -8,8 +8,8 @@
 
 namespace FinalGene\UriTemplateModule\Service;
 
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Interop\Container\ContainerInterface;
+use Zend\ServiceManager\Factory\FactoryInterface;
 
  /**
  * UriTemplateServiceFactory
@@ -21,18 +21,18 @@ class UriTemplateServiceFactory implements FactoryInterface
     /**
      * Create service
      *
-     * @param ServiceLocatorInterface $serviceLocator
-     *
+     * @param ContainerInterface $container
+     * @param string $requestedName
+     * @param null|array $options
      * @return UriTemplateService
      */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null) {
         $linkBuilder = new UriTemplateService();
 
-        $linkBuilder->setRouter($serviceLocator->get('Router'));
+        $linkBuilder->setRouter($container->get('Router'));
 
-        if (isset($serviceLocator->get('Config')['zf-rest'])) {
-            $linkBuilder->setZfRestConfig($serviceLocator->get('Config')['zf-rest']);
+        if (isset($container->get('Config')['zf-rest'])) {
+            $linkBuilder->setZfRestConfig($container->get('Config')['zf-rest']);
         }
 
         return $linkBuilder;

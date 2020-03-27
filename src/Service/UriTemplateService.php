@@ -9,11 +9,11 @@
 namespace FinalGene\UriTemplateModule\Service;
 
 use BadMethodCallException;
-use Zend\Mvc\Router\Http\Literal;
-use Zend\Mvc\Router\Http\Part;
-use Zend\Mvc\Router\Http\RouteInterface;
-use Zend\Mvc\Router\Http\Segment;
-use Zend\Mvc\Router\SimpleRouteStack;
+use Zend\Router\Http\Literal;
+use Zend\Router\Http\Part;
+use Zend\Router\Http\RouteInterface;
+use Zend\Router\Http\Segment;
+use Zend\Router\SimpleRouteStack;
 
 /**
  * UriTemplateService
@@ -126,9 +126,9 @@ class UriTemplateService
     /**
      * Recursive function to build an URI for a route and it's sub-routes
      *
-     * @param                                   $routeName
-     * @param \Zend\Mvc\Router\SimpleRouteStack $router
-     * @param string                            $uri
+     * @param                               $routeName
+     * @param \Zend\Router\SimpleRouteStack $router
+     * @param string                        $uri
      *
      * @return string
      */
@@ -167,7 +167,7 @@ class UriTemplateService
     /**
      * Get the URI template for a literal route
      *
-     * @param \Zend\Mvc\Router\Http\Literal $route
+     * @param \Zend\Router\Http\Literal $route
      *
      * @return mixed
      */
@@ -181,7 +181,7 @@ class UriTemplateService
     /**
      * Get a URI template for a segment route
      *
-     * @param \Zend\Mvc\Router\Http\Segment $route
+     * @param \Zend\Router\Http\Segment $route
      *
      * @return string
      */
@@ -232,7 +232,7 @@ class UriTemplateService
     /**
      * Get the route from a part route
      *
-     * @param \Zend\Mvc\Router\Http\Part $route
+     * @param \Zend\Router\Http\Part $route
      *
      * @return mixed
      */
@@ -246,7 +246,7 @@ class UriTemplateService
     /**
      * Add a Part-routes childroutes as routes
      *
-     * @param \Zend\Mvc\Router\Http\Part $route
+     * @param \Zend\Router\Http\Part $route
      */
     protected function addChildRoutes(Part $route)
     {
@@ -263,7 +263,7 @@ class UriTemplateService
     /**
      * Get ZF-Rest whitelisted queryparams for a route (based on the routes controller)
      *
-     * @param \Zend\Mvc\Router\Http\RouteInterface $childRouteRealRoute
+     * @param \Zend\Router\Http\RouteInterface $childRouteRealRoute
      *
      * @return string an URI template for queryparams
      */
@@ -296,7 +296,7 @@ class UriTemplateService
     /**
      * Get ZF-Rest collection name for a route (based on the routes controller)
      *
-     * @param \Zend\Mvc\Router\Http\RouteInterface $childRouteRealRoute
+     * @param \Zend\Router\Http\RouteInterface $childRouteRealRoute
      *
      * @return string
      */

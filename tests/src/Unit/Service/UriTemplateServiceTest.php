@@ -9,9 +9,9 @@
 namespace FinalGene\UriTemplateModuleTest\Unit\Service;
 
 use FinalGene\UriTemplateModule\Service\UriTemplateService;
-use Zend\Mvc\Router\Http\TreeRouteStack;
-use Zend\Mvc\Router\RouteMatch;
-use Zend\Mvc\Router\SimpleRouteStack;
+use Zend\Router\Http\TreeRouteStack;
+use Zend\Router\RouteMatch;
+use Zend\Router\SimpleRouteStack;
 
 /**
  * Uri template service test

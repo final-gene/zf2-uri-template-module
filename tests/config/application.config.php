@@ -8,6 +8,7 @@
 
 return [
     'modules' => [
+        'Zend\Router',
         'FinalGene\UriTemplateModule',
     ],
     'module_listener_options' => [
