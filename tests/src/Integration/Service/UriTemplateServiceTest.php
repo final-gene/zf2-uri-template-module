@@ -31,6 +31,7 @@ class UriTemplateServiceTest extends \PHPUnit_Framework_TestCase
     {
         $moduleLoader = new ModuleLoader([
             'modules' => [
+                'Zend\Router',
                 'FinalGene\UriTemplateModuleTest\Integration\Service\UriTemplateServiceTest',
                 'FinalGene\UriTemplateModule'
             ],
